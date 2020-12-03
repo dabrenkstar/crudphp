@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_base }}/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{{ url_base }}/favicon.ico">
+
+    <!-- Styles -->
+    <link href="{{ url_base }}/css/font-awesome.all.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_base }}/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{{ url_base }}/css/mdb.min.css" rel="stylesheet">
+    <link href="{{ url_base }}/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_base }}/css/dashboard/scroll.css" type="text/css">
+    <link rel="stylesheet" href="{{ url_base }}/css/dashboard/navbar-custom.css" type="text/css">
+    <link rel="stylesheet" href="{{ url_base }}/css/dashboard/navbar-custom-themes.css" type="text/css">
+    <link rel="stylesheet" href="{{ url_base }}/css/dashboard/style.css" type="text/css">
+    <style type="text/css">
+        body {
+            background-color: #eceff1;
+        }
+
+        .sidebar-bg.bg1 .sidebar-wrapper {
+            background-image: url("{{ url_base }}/img/dashboard/sidebar/bg1.jpg");
+        }
+    </style>
+    {% block css %}
+    {% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <div class="page-wrapper ice-theme sidebar-bg bg1 toggled">
+        <a id="show-sidebar" class="btn btn-dark bg-color-gradient-primary" href="javascript:void(0)">
+            <i class="fas  fa-2x fa-bars"></i>
+        </a>
+        <header>
+
+            <!-- Navbar -->
+            <nav id="sidebar" class="sidebar-wrapper">
+                <div class="sidebar-content">
+                    <div class="sidebar-brand waves-light">
+                        <a href="javascript:void(0)"><i class="fas fa-tools mr-2"></i>CRUD</a>
+                        <div id="close-sidebar">
+                            <i class="fas fa-lg fa-arrow-circle-left "></i>
+                        </div>
+                    </div>
+                    <div class="sidebar-header">
+                        <a href="#">
+                            <div class="user-pic">
+                                <img id="user-nav-img" class="img-responsive img-circle"
+                                    src="{{ url_base }}/img/dashboard/sidebar/user.jpg" alt="user"
+                                    onerror="this.src='{{ url_base }}/img/dashboard/sidebar/user.jpg'">
+                            </div>
+                        </a>
+                        <div class="user-info">
+                            <a href="#">
+                                <span class="user-name"><strong>Test User</strong>
+                                </span></a>
+                            <span class="user-role">Admin</span>
+                            <span class="user-status">
+                                <i class="fas fa-circle stutus-on"></i>
+                                <span>Online</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-menu">
+                        <ul>
+                            <li class="header-menu">
+                                <span>Menu</span>
+                            </li>
+                            <li class="hoverable waves-light ">
+                                <a href="{{ url_base }}">
+                                    <i class="fas fa-home"></i>
+                                    <span>Página principal</span>
+                                </a>
+                            </li>
+
+                            <li class="hoverable waves-light ">
+                                <a href="{{ url_base }}/empleados">
+                                    <i class="fas fa-user-tie"></i>
+                                    <span>Empleados</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- sidebar-menu  -->
+                </div>
+                <!-- sidebar-content  -->
+                <div class="sidebar-footer">
+
+
+                </div>
+            </nav>
+
+        </header>
+
+        <main class="page-content">
+            {% block body %}
+            {% endblock %}
+        </main>
+    </div>
+
+
+    <script type="text/javascript" src="{{ url_base }}/js/addons/moment.js"></script>
+
+    <script type="text/javascript" src="{{ url_base }}/js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{{ url_base }}/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{{ url_base }}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ url_base }}/js/font-awesome.all.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{{ url_base }}/js/mdb.min.js"></script>
+    <script type="text/javascript" src="{{ url_base }}/js/app.js"></script>
+    <script type="text/javascript" src="{{ url_base }}/js/dashboard/scroll.js"></script>
+    <script type="text/javascript" src="{{ url_base }}/js/dashboard/navbar-custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    {% block js %}
+    {% endblock %}
+</body>
+
+</html>

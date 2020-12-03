@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+
+{% block title %}Crear empleados{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_base }}/css/addons/select2.css" type="text/css" />
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+
+
+    <!--Grid row-->
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-12">
+
+            <!--Card-->
+            <div class="card hoverable" style="padding: 20px;">
+                <!--Card content-->
+                <div class="d-sm-flex justify-content-between">
+                    <h5 class="d-flex justify-content-start">
+                        <span><i class="fas fa-plus fa-lg mr-1"></i>
+                            <a href="{{ url_base }}/empleados">Lista de empleados</a>
+                            /
+                            Crear empleado
+
+                        </span>
+                    </h5>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn-card-show btn btn-outline-danger btn-circle waves-effect hoverable"
+                            data-toggle="tooltip" data-placement="bottom" title="Mostrar/Ocultar">
+                            <i class="far fa-2x fa-eye-slash"></i>
+                        </button>
+                        <button class="btn-card-fullscreen btn btn-outline-secondary btn-circle waves-effect hoverable"
+                            data-toggle="tooltip" data-placement="bottom" title="Pantalla Completa">
+                            <i class="fas fa-2x fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+                <hr />
+                <div class="card-content">
+
+                    <form id="form_empleado" class="text-center" action="{{ url_base }}/empleados/store" method="POST">
+
+                        <div class="md-form">
+                            <input type="hidden" name="id" value="">
+                            <div class="md-form">
+                                <label for="exampleFormControlInput1">Nombre completo</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" value=""
+                                    name="nombre" placeholder="Nombre completo del empleado">
+                            </div>
+
+
+                            <div class="md-form">
+                                <label for="exampleFormControlInput1">Correo electrónico</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" value=""
+                                    name="email" placeholder="Correo electrónico">
+                            </div>
+
+                            <div class="md-form">
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-2 ">Sexo</legend>
+
+                                        <div class="md-form">
+                                            <div class="form-check">
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    <input class="form-check-input" type="radio" id="gridRadios1"
+                                                        value="M"  name="sexo" checked>
+                                                    Masculino
+                                                </label>
+                                            </div>
+
+                                            <div class="md-form">
+                                                <div class="form-check">
+                                                    <label class="checkbox-inline" for="gridRadios2">
+                                                        <input class="form-check-input" type="radio" value="F"
+                                                            name="sexo" id="gridRadios2"> Femenino
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                            </div>
+                            </fieldset>
+                        </div>
+
+
+                        <div class="md-form">
+                            <label for="disabledSelect"></label>
+                            <select id="disabledSelect" name="area_id" class="form-control">
+                                {% for area in areas %}
+                                <option value="{{ area.id }}"> {{ area.nombre }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+
+
+                        <div class="md-form">
+                            <label for="exampleFormControlTextarea1">Descripción</label>
+                            <textarea class="form-control" name="descripcion" id="exampleFormControlTextarea1"
+                                rows="3"></textarea>
+                        </div>
+
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="boletin" id="defaultChecked2"
+                                checked value="1">
+                            <label class="custom-control-label" for="defaultChecked2">Deseo recibir boletín
+                                informativo</label>
+                        </div>
+
+
+
+                        <div class="md-form">
+                            <fieldset class="form-group">
+                                <div class="row">
+                                    <legend class="col-form-label col-sm-2 ">Roles</legend>
+
+
+                                    {% for rol in roles %}
+                                    <div class="md-form col-sm-10">
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="gridRadios1">
+                                                <input class="form-check-input" type="radio" value="{{rol.id}}"
+                                                    name="roles" id="radio{{rol.id}}"> {{rol.nombre}}
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+                                    {% endfor %}
+
+                                </div>
+                            </fieldset>
+
+                            <div class="form-group row">
+                                <div class="offset-md-2 col-md-10">
+                                    <button type="button" class="btn btn-success" onclick="validar()">
+                                        <i class="fas fa-plus fa-lg mr-1"></i> Crear
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ url_base }}/js/addons/select2.min.js"></script>
+<script type="text/javascript" src="{{ url_base }}/js/addons/i18n/es.js"></script>
+<script type="text/javascript" src="{{ url_base }}/js/addons/validation/jquery.validate.js"></script>
+<script type="text/javascript" src="{{ url_base }}/js/addons/validation/messages_es.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    $('#area_id').select2({
+        placeholder: "Producto",
+        theme: "material",
+        language: "es"
+    });
+
+    $(".select2-selection__arrow")
+        .addClass("fas fa-chevron-down");
+
+    function validar() {
+        $("#form_empleado").validate({
+            lang: 'es',
+            errorPlacement: function (error, element) {
+                $(element).parent().after(error);
+            }
+        });
+
+        if ($("#form_empleado").valid()) {
+            $("#form_empleado").submit();
+        }
+    }
+</script>
+{% endblock %}
